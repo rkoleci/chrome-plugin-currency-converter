@@ -9,5 +9,11 @@
       "default_icon": "icon.png",
       "default_popup": "popup.html"
     },
+    "content_scripts": [
+      {
+        "matches": ["https://*.aliexpress.com/*"],
+        "js": ["popup.js"]
+      }
+    ],
     "permissions": ["activeTab"]
   }

@@ -4,15 +4,26 @@ const supportedWebsites = [
     'www.aliexpress.com'
 ]
 
-// check which website user is visiting
-chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-    let url = tabs[0].url;
-  
-    let currentWebsite = supportedWebsites.filter(website => url.includes(website))
-    init(currentWebsite)
-});
 
+const initAmazon = () => {
 
-const init = (currentWebsite) => {
-    alert('start converting '+currentWebsite,  )
+}
+
+const initEbay = () => {
+    
+}
+
+const initAliexpress = () => {
+    let node = document.getElementsByClassName('uniform-banner-box-price')[0]
+    node.innerHTML = 10
+}
+
+if (location.href.includes(supportedWebsites[0])) {
+    initAmazon()
+}
+if (location.href.includes(supportedWebsites[1])) {
+    initEbay()
+}
+if (location.href.includes(supportedWebsites[2])) {
+    initAliexpress()
 }
