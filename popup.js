@@ -1,7 +1,8 @@
 const supportedWebsites = [
     'www.amazon.com',
-    'www.ebay.com',
-    'www.aliexpress.com'
+    'ebay.com',
+    'www.aliexpress.com',
+    'www.asos.com'
 ]
 
 const apiKey = '5a49beefa5e7696bc287'
@@ -16,11 +17,30 @@ const fetchConversion = async () => {
 }
 
 const initAmazon = () => {
+    let conversionRate = ''
+    await fetchConversion().then(res => {
+        conversionRate = res[`${from}_${to}`]
+    })
 
+    if (!conversionRate) return
+
+    const priceNode = document.getElementsByClassName('a-price a-text-price a-size-medium apexPriceToPay')[0]
+    if (priceNode) {
+        
+    }
 }
 
-const initEbay = () => {
+const initEbay = () => { 
+    let conversionRate = ''
+    await fetchConversion().then(res => {
+        conversionRate = res[`${from}_${to}`]
+    })
 
+    if (!conversionRate) return
+    let priceNode = document.getElementById('prcIsum')
+    if (priceNode) {
+        document.getElementById('prcIsum').innerHTML = 1
+    }
 }
 
 const initAliexpress = async () => {
@@ -49,10 +69,14 @@ const initAliexpress = async () => {
 
 }
 
+const initAsos = async () => {
+
+}
+
  
 window.addEventListener('load', () => {
     /* Main */
-
+    alert(location.href)
     if (location.href.includes(supportedWebsites[0])) {
         initAmazon()
     }
@@ -61,5 +85,8 @@ window.addEventListener('load', () => {
     }
     if (location.href.includes(supportedWebsites[2])) {
         initAliexpress()
+    } 
+    if (location.href.includes(supportedWebsites[3])) {
+        initAsos()
     } 
 })
